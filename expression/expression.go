@@ -8,7 +8,7 @@ import (
 	"github.com/going/rulengine/facts"
 )
 
-func IsOperatorCh(ch rune) bool {
+func IsOperatorChar(ch rune) bool {
 	if ch == '(' || ch == ')' || ch == '+' || ch == '-' || ch == '=' || ch == '!' || ch == '*' || ch == '/' || ch == '>' || ch == '<' || ch == '&' || ch == '|' {
 		return true
 	} else {
@@ -42,16 +42,16 @@ func ShouldSplit(a rune, b rune) bool {
 	if b == '(' || b == ')' {
 		return true
 	}
-	if IsOperatorCh(a) && !IsOperatorCh(b) {
+	if IsOperatorChar(a) && !IsOperatorChar(b) {
 		return true
 	}
-	if !IsOperatorCh(a) && IsOperatorCh(b) {
+	if !IsOperatorChar(a) && IsOperatorChar(b) {
 		return true
 	}
 	return false
 }
 
-func IsVariableCh(ch rune) bool {
+func IsVariableChar(ch rune) bool {
 	if ch == '_' || ch == '$' || ch == '"' || ch == ' ' || ch == '.' {
 		return true
 	}
@@ -94,7 +94,7 @@ func Tokenize(expr string) []string {
 				tmp = []byte{}
 			}
 
-			if IsVariableCh(ch) || IsOperatorCh(ch) {
+			if IsVariableChar(ch) || IsVariableChar(ch) {
 				tmp = append(tmp, byte(ch))
 			}
 			prevCh = ch
