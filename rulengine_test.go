@@ -1,8 +1,8 @@
 package rulengine
 
 import (
-	"github.com/xlvector/rulengine/facts"
-	"github.com/xlvector/rulengine/logic"
+	"github.com/going/rulengine/facts"
+	"github.com/going/rulengine/logic"
 	"testing"
 )
 

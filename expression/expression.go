@@ -2,9 +2,10 @@ package expression
 
 import (
 	"container/list"
-	"github.com/xlvector/rulengine/facts"
 	"strconv"
 	"strings"
+
+	"github.com/going/rulengine/facts"
 )
 
 func IsOperatorCh(ch rune) bool {

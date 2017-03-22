@@ -3,9 +3,9 @@ package rulengine
 import (
 	"bufio"
 	"fmt"
-	"github.com/xlvector/rulengine/expression"
-	"github.com/xlvector/rulengine/facts"
-	"github.com/xlvector/rulengine/logic"
+	"github.com/going/rulengine/expression"
+	"github.com/going/rulengine/facts"
+	"github.com/going/rulengine/logic"
 	"os"
 	"strings"
 )
