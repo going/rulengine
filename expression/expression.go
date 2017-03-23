@@ -2,10 +2,9 @@ package expression
 
 import (
 	"container/list"
+	"github.com/going/rulengine/facts"
 	"strconv"
 	"strings"
-
-	"github.com/going/rulengine/facts"
 )
 
 func IsOperatorChar(ch rune) bool {
@@ -94,7 +93,7 @@ func Tokenize(expr string) []string {
 				tmp = []byte{}
 			}
 
-			if IsVariableChar(ch) || IsVariableChar(ch) {
+			if IsVariableChar(ch) || IsOperatorChar(ch) {
 				tmp = append(tmp, byte(ch))
 			}
 			prevCh = ch

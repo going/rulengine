@@ -3,11 +3,12 @@ package rulengine
 import (
 	"bufio"
 	"fmt"
+	"os"
+	"strings"
+
 	"github.com/going/rulengine/expression"
 	"github.com/going/rulengine/facts"
 	"github.com/going/rulengine/logic"
-	"os"
-	"strings"
 )
 
 type RuleEngine struct {
@@ -70,8 +71,8 @@ func (self *RuleEngine) GetFiredExpressions(data *facts.FactCollection) []string
 
 	firedExpressions := []string{}
 	for k, v := range counter {
+		fmt.Println(self.expressions[k])
 		if v == self.varCountInExpressions[k] {
-			fmt.Println(self.expressions[k])
 			ret := expression.CalcReversePolishNotation(self.expressions[k], data)
 			if ret == "true" {
 				fmt.Println("fire expression", self.expressionNames[k], self.expressions[k])

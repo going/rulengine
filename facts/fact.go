@@ -10,16 +10,19 @@ type Fact struct {
 	keys []string
 }
 
-func NewFact(buf string) *Fact {
+func NewFact(buf string) (*Fact, error) {
 	ret := Fact{}
 	ret.data = make(map[string]interface{})
-	json.Unmarshal([]byte(buf), &ret.data)
+	if err := json.Unmarshal([]byte(buf), &ret.data); err != nil {
+		return nil, err
+	}
+
 	ret.keys = ret.extractKeys(ret.data)
-	return &ret
+	return &ret, nil
 }
 
 func (self *Fact) Get(key string) (interface{}, bool) {
-	tks := strings.Split(key, ".")
+	tks := strings.SplitN(key, ".", -1)
 	var data interface{}
 	data = self.data
 	for _, tk := range tks {
@@ -45,7 +48,6 @@ func (self *Fact) extractKeys(data map[string]interface{}) []string {
 			for _, k := range subKeys {
 				ret = append(ret, key+"."+k)
 			}
-			break
 		}
 
 		ret = append(ret, key)
@@ -69,7 +71,7 @@ func NewFactCollection() *FactCollection {
 
 func (self *FactCollection) Get(key string) (interface{}, bool) {
 	tks := strings.SplitN(key, ".", 2)
-	if len(tks) != 2 {
+	if len(tks) == 0 {
 		return nil, false
 	}
 	fact, exist := self.facts[tks[0]]

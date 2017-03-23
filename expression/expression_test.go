@@ -6,16 +6,16 @@ import (
 )
 
 func TestTokenize(t *testing.T) {
-	if !IsOperatorCh('+') {
+	if !IsOperatorChar('+') {
 		t.Error()
 	}
-	if !IsVariableCh('5') {
+	if !IsVariableChar('5') {
 		t.Error()
 	}
-	if !IsVariableCh('r') {
+	if !IsVariableChar('r') {
 		t.Error()
 	}
-	if !IsVariableCh('E') {
+	if !IsVariableChar('E') {
 		t.Error()
 	}
 
